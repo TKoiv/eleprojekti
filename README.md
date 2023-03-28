@@ -1,1 +1,4 @@
-# Elektroniikan sovellusprojekti / Kevät 2023 / Ryhmä 5
+# Elektroniikan sovellusprojektina Sääasema / Kevät 2023 / Ryhmä 5
+
+
+
