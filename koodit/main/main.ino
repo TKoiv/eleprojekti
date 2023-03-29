@@ -5,20 +5,17 @@
 float temperature ;
 float humidity ;
 int lumen ;
-float windspee d;
+float windspeed ;
 
 float taulukko[4];
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   dht.begin();
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
   temperature = temp_measurement();
   taulukko[0] = temperature;
   humidity = hum_measurement();
