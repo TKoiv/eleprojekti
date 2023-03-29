@@ -1,33 +1,18 @@
-
-
 #include <EEPROM.h>
-
 #define TIMSK1  TIMSK
-// *** Customizable Parameters ***
-int period = 0.1;                // (300 seconds = 5 minutes)
-int fanSampleRate = 1; // How many milliseconds between taking windspeed readings (Needs to be small enough to capture the peak of the analog waveform)
-int fanPin = PA0;
-const int ledPin = PB1;
-// *** Globals ***
-int highest = 0;     // Keeps track of the highest windspeed over a period 
-int seconds = 0;     // Keeps track of how many seconds have passed within a period
-int promAddr = 0;    // Current index in EEPROM memory
 
-pinMode(ledPin, OUTPUT);
-digitalWrite(ledPin, LOW);
-timer1_init(); //????????
+int period = 0.1;                
+int fanSampleRate = 1; 
+int fanPin = A2;
 
-/********************************************************
- * timer1_init()
- *
- * Sets up the registers to use TIMER 1 which will be
- * used to call an interrupt handler once every second
- * (Assumes Arduino Uno is based off ATMEGA328)
- ********************************************************/
+int highest = 0;     / 
+int seconds = 0;     
+int promAddr = 0;    
+
+timer1_init();
+
 void timer1_init() {
-  // Used the Arduino Timer Calculator at http://www.8bit-era.cz/arduino-timer-interrupts-calculator.html to generate this code
   
-  // TIMER 1 for interrupt frequency 1 Hz:
   cli(); // stop interrupts
   TCCR1A = 0; // set entire TCCR1A register to 0
   TCCR1B = 0; // same for TCCR1B
@@ -44,22 +29,14 @@ void timer1_init() {
 }
 
 
-/********************************************************
- * Interrupt Service Routine (Timer 1)
- *
- * This is called by Timer 1 once a second.
- ********************************************************/
-ISR(TIMER1_COMPA_vect) {         // timer compare interrupt service routine
-
-  // This section increments the seconds counter each time the interrupt handler is called.
-  // Once the number of seconds reaches the period length, we run this block of code and reset.
+ISR(TIMER1_COMPA_vect) {        
   seconds++;
   if (seconds >= period) {
     seconds = 0;
     //Serial.print("m/s: ");
     //Serial.println(highest * 0.109 * 0.44);
     
-    EEPROM.write(promAddr++, highest); // Write the highest windspeed of the period to EEPROM
+    EEPROM.write(promAddr++, highest);
  
     highest = 0;
   }
@@ -76,7 +53,7 @@ float windspeed_measurement()
         highest = newReading;
     }
 
-    delay(fanSampleRate); // Time in between taking readings from anemometer (fan)
+    delay(fanSampleRate);
     
     return highest;
 }
