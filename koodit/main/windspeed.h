@@ -1,15 +1,15 @@
 #include <EEPROM.h>
-#define TIMSK1  TIMSK
+#define TIMSK TIMSK1
 
 int period = 0.1;                
 int fanSampleRate = 1; 
 int fanPin = A2;
 
-int highest = 0;     / 
+int highest = 0;     
 int seconds = 0;     
 int promAddr = 0;    
 
-timer1_init();
+
 
 void timer1_init() {
   
