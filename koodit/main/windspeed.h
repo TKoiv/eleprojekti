@@ -1,7 +1,7 @@
 int pin = PA2;
 int highest;
 
-//measures windspeed
+
 
 float windspeed_measurement() {
   float measure = analogRead(pin);
