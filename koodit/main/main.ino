@@ -7,25 +7,26 @@ float humidity;
 int lumen;
 float windspeed;
 
-float taulukko[4];
 
 void setup() {
   Serial.begin(9600);
   dht.begin();
-  timer1_init();
+  pinMode(2,OUTPUT);
 
 }
 
 void loop() {
-
+    digitalWrite(2, HIGH); // turn on LED
+    delay(500); // wait for 500ms
+    digitalWrite(2, LOW); // turn off LED
+    delay(500); // wait for 500ms
+	//led for debuggin
 
 temperature = temp_measurement();
 humidity = hum_measurement();
 lumen = lumen_measurement();
 windspeed =windspeed_measurement();
 
-Serial.flush();
-Serial.print("temp=");
 Serial.print(temperature);
 Serial.print("&");
 
@@ -41,6 +42,6 @@ Serial.print("wind=");
 Serial.println(windspeed);
 
 
-delay(7500);
+delay(2000);
 
 }

@@ -4,6 +4,8 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
+//measures humidity and temperature
+
 float hum_measurement(){
   delay(500);
   float h = dht.readHumidity();
