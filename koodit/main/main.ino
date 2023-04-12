@@ -20,7 +20,7 @@ void loop() {
     delay(500); // wait for 500ms
     digitalWrite(2, LOW); // turn off LED
     delay(500); // wait for 500ms
-
+	//led for debuggin
 
 temperature = temp_measurement();
 humidity = hum_measurement();
