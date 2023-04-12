@@ -13,8 +13,6 @@ $fileContent = "   ".$Temp."°C      ".$Humidity."%         ".$Lux."        ".$W
 $status = file_put_contents('log.txt',$fileContent,FILE_APPEND);
 
 
-
-
 //File writing status
 if($status)
     echo "Data written successfully,";

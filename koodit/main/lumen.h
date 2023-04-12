@@ -7,6 +7,8 @@ const int sensorPin = A1;
 int sensorVal; 
 int lux; 
 
+//measures lumen
+
 int lumen_measurement() {
   sensorVal = analogRead(sensorPin);
   delay(DELAY);
